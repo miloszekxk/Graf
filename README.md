@@ -12,11 +12,10 @@ Kompleksowe narzędzie analityczne napisane w języku C++. Służy do parsowania
   - [✨ Funkcjonalności](#-funkcjonalności)
   - [🧠 Zastosowana Logika i Teoria (Matematyczna)](#-zastosowana-logika-i-teoria-matematyczna)
   - [🚀 Instrukcja Kompilacji i Uruchomienia](#-instrukcja-kompilacji-i-uruchomienia)
-    - [Krok 1: Znajdź gotowy program](#krok-1-znajdź-gotowy-program)
-    - [Krok 2: Przygotuj plik wejściowy](#krok-2-przygotuj-plik-wejściowy)
-    - [Krok 3: Otwórz CMD bezpośrednio tutaj](#krok-3-otwórz-cmd-bezpośrednio-tutaj)
-    - [Krok 4: Uruchom program](#krok-4-uruchom-program)
-    - [Gotowe! W tym samym folderze pojawi się plik wyjscie.txt z gotowym wynikiem.](#gotowe-w-tym-samym-folderze-pojawi-się-plik-wyjscietxt-z-gotowym-wynikiem)
+    - [Kompilacja](#kompilacja)
+    - [Plik wejściowy](#plik-wejściowy)
+    - [Uruchomienie](#uruchomienie)
+    - [Przykładowy wynik (`wyjscie.txt`)](#przykładowy-wynik-wyjscietxt)
   - [📄 Licencja](#-licencja)
 
 ---
@@ -43,29 +42,52 @@ Z matematycznego punktu widzenia graf jest dwudzielny (bipartite) wtedy i tylko 
 ---
 
 ## 🚀 Instrukcja Kompilacji i Uruchomienia
-### Krok 1: Znajdź gotowy program
-1. Otwórz folder swojego projektu w systemie Windows.
-2. Wejdź do folderu o nazwie **`x64`**, a następnie do folderu **`Debug`**.
-3. Powinieneś tam znaleźć plik z ikonką aplikacji (np. `Graf.exe`).
 
-### Krok 2: Przygotuj plik wejściowy
-Upewnij się, że w tym samym folderze (w którym jesteś teraz, czyli `Debug`) znajduje się Twój plik z danymi, np. **`wejscie.txt`**. Jeśli go tam nie ma – przeklej go tam.
+### Kompilacja
 
-### Krok 3: Otwórz CMD bezpośrednio tutaj
-1. Będąc w folderze `Debug`, kliknij myszką w puste miejsce na **pasku adresu** na samej górze okna Windows (tam, gdzie wyświetla się ścieżka do folderu).
-2. Skasuj to, co tam jest, wpisz po prostu słowo **`cmd`** i wciśnij **Enter**.
-3. Od razu otworzy się czarne okno konsoli, ustawione idealnie w Twoim folderze.
+**g++ (Linux / Windows z MinGW):**
 
-### Krok 4: Uruchom program
-W czarnym oknie wpisz poniższą komendę i wciśnij Enter:
-
-```cmd
-Graf.exe -i wejscie.txt -o wyjscie.txt
+```bash
+g++ -Wall -Wextra -std=c++17 main.cpp graph.cpp -o graf
 ```
 
-### Gotowe! W tym samym folderze pojawi się plik wyjscie.txt z gotowym wynikiem.
+**Visual Studio:** otwórz `Graf.slnx` i zbuduj projekt (`Ctrl+Shift+B`). Plik `Graf.exe` pojawi się w folderze `x64/Debug`.
+
+### Plik wejściowy
+
+Każda linia to jedna krawędź grafu nieskierowanego - dwa numery wierzchołków oddzielone spacją:
+
+```text
+1 2
+2 3
+3 4
+4 1
+```
+
+Gotowe przykłady znajdziesz w folderze [`przyklady/`](przyklady).
+
+### Uruchomienie
+
+```bash
+./graf -i przyklady/dwudzielny.txt -o wyjscie.txt
+```
+
+W systemie Windows: `Graf.exe -i wejscie.txt -o wyjscie.txt`.
+
+### Przykładowy wynik (`wyjscie.txt`)
+
+```text
+Lista sasiedztwa grafu:
+1: 2 4
+2: 1 3
+3: 2 4
+4: 3 1
+Graf jest dwudzielny.
+Zbior 1: 1 3
+Zbior 2: 2 4
+```
 
 ## 📄 Licencja
 
-Projekt został stworzony w celach edukacyjnych jako zadanie na zaliczenie przedmiotu. 
-Kod jest udostępniony publicznie – możesz z niego swobodnie korzystać, modyfikować go i traktować jako materiał do nauki.
+Projekt został stworzony w celach edukacyjnych jako zadanie na zaliczenie przedmiotu.
+Kod udostępniony na licencji [MIT](LICENSE) - możesz go swobodnie wykorzystywać, modyfikować i traktować jako materiał do nauki.
